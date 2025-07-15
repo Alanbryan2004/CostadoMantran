@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filas</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e3e3e3; /* fundo neutro claro */
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #fff;
+      padding: 0;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      position: absolute;
+      height: 100%;
+      z-index: 30;
+    }
+
+    .sidebar.active {
+      transform: translateX(0);
+    }
+
+    .sidebar-header {
+      background: linear-gradient(to right, #b30000, #555555); /* vermelho → cinza */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .sidebar-header img {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h2 {
+      margin: 5px 0 0 0;
+      font-size: 16px;
+    }
+
+    .sidebar p {
+      margin: 0;
+      font-weight: bold;
+      color: #eee;
+      font-size: 14px;
+    }
+
+    .menu-item {
+      margin: 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: #b30000;
+      font-weight: 500;
+    }
+
+    .menu-item i {
+      margin-right: 10px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background: linear-gradient(to right, #b30000, #555555); /* vermelho → cinza */
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      z-index: 20;
+      position: fixed;
+      width: 100%;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .fila-container {
+      padding: 10px;
+      margin-top: 60px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 10px 15px;
+      margin-bottom: 12px;
+      display: flex;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .posicao {
+      font-size: 24px;
+      font-weight: bold;
+      color: #b30000;
+      margin-right: 15px;
+      min-width: 50px;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .nome-fila {
+      font-weight: bold;
+      font-size: 16px;
+      color: #b30000;
+      margin-bottom: 5px;
+    }
+
+    .detalhes {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .detalhes strong {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="logo.png" alt="Logo Bandeirantes" />
+        <h2>José Marcio Ruiz</h2>
+        <p>C149</p>
+      </div>
+
+      <a href="home.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">person</i>Convocação
+        </div>
+      </a>
+
+      <a href="fila.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">format_list_numbered</i>Fila
+        </div>
+      </a>
+
+      <a href="reserva.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">bookmark</i>Reserva
+        </div>
+      </a>
+
+      <a href="index.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">exit_to_app</i>Sair
+        </div>
+      </a>
+    </div>
+
+    <div class="header">
+      <div class="menu-icon" id="menuButton">&#9776;</div>
+      Filas
+    </div>
+
+    <div class="fila-container">
+      <div class="card">
+        <div class="posicao">#2</div>
+        <div class="info">
+          <div class="nome-fila">004 - SANTOS X SANTOS TERCEIRO</div>
+          <div class="detalhes">
+            <strong>Sua Chapeira:</strong> 00002C<br>
+            <strong>Primeiro:</strong> 00001C - JOSE ALDO
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="posicao">#5</div>
+        <div class="info">
+          <div class="nome-fila">001 - TRA COOPERADO</div>
+          <div class="detalhes">
+            <strong>Sua Chapeira:</strong> 00002C<br>
+            <strong>Primeiro:</strong> 00425C - ACACIO LEAL
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="posicao">#7</div>
+        <div class="info">
+          <div class="nome-fila">003 - SANTOS X SANTOS COOPERADO</div>
+          <div class="detalhes">
+            <strong>Sua Chapeira:</strong> 00002C<br>
+            <strong>Primeiro:</strong> 00001C - CARLOS HENRIQUE
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="posicao">#91</div>
+        <div class="info">
+          <div class="nome-fila">002 - TRA TERCEIRO</div>
+          <div class="detalhes">
+            <strong>Sua Chapeira:</strong> 00002C<br>
+            <strong>Primeiro:</strong> 00020C - ILMAR CARDOSO DE JESUS
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuButton = document.getElementById('menuButton');
+      if (!sidebar.contains(event.target) && event.target !== menuButton) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    document.getElementById('menuButton').addEventListener('click', function(event) {
+      event.stopPropagation();
+      toggleMenu();
+    });
+  </script>
+</body>
+</html>

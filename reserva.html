@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mantran Mobile</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e3e3e3;
+      color: #333;
+    }
+    .container {
+      display: flex;
+      height: 100vh;
+      background-color: #f2f2f2;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #fff;
+      padding: 0;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      position: absolute;
+      height: 100%;
+      z-index: 30;
+    }
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    .sidebar-header {
+      background: linear-gradient(to right, #b30000, #555555);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .sidebar-header img {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+    .sidebar h2 {
+      margin: 5px 0 0 0;
+      font-size: 16px;
+    }
+    .sidebar p {
+      margin: 0;
+      font-weight: bold;
+      color: #eee;
+      font-size: 14px;
+    }
+    .menu-item {
+      margin: 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: #b30000;
+      font-weight: 500;
+    }
+    .menu-item i {
+      margin-right: 10px;
+    }
+    .main {
+      flex: 1;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+    .topbar {
+      background: linear-gradient(to right, #b30000, #555555);
+      color: white;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 20;
+    }
+    .topbar button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .content {
+      margin-top: 60px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .content h2, .content p {
+      margin: 0;
+      color: #b30000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="logo.png" alt="Logo Bandeirantes" />
+        <h2>José Marcio Ruiz</h2>
+        <p>C149</p>
+      </div>
+      <a href="home.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">person</i>Convocação
+        </div>
+      </a>
+
+      <a href="fila.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">format_list_numbered</i>Fila
+        </div>
+      </a>
+
+      <div class="menu-item">
+        <i class="material-icons">bookmark</i>Reserva
+      </div>
+
+      <a href="index.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">exit_to_app</i>Sair
+        </div>
+      </a>
+    </div>
+
+    <div class="main">
+      <div class="topbar">
+        <button id="menuButton"><i class="material-icons">menu</i></button>
+        <h1 style="margin-left: 15px; font-size: 20px;">Reserva</h1>
+      </div>
+      <div class="content">
+        <h2>Você não possui Reserva</h2>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuButton = document.getElementById('menuButton');
+      if (!sidebar.contains(event.target) && event.target !== menuButton) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    document.getElementById('menuButton').addEventListener('click', function(event) {
+      event.stopPropagation();
+      toggleMenu();
+    });
+  </script>
+</body>
+</html>

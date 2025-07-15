@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda Aceita</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #b30000, #555555); /* vermelho para cinza */
+      color: #003366;
+    }
+
+    .container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #fff;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      position: absolute;
+      height: 100%;
+      z-index: 30;
+    }
+
+    .sidebar.active {
+      transform: translateX(0);
+    }
+
+    .sidebar-header {
+      background: linear-gradient(to right, #b30000, #555555); /* vermelho para cinza */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .sidebar-header img {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h2 {
+      margin: 5px 0 0 0;
+      font-size: 16px;
+    }
+
+    .sidebar p {
+      margin: 0;
+      font-weight: bold;
+      color: #eee;
+      font-size: 14px;
+    }
+
+    .menu-item {
+      margin: 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: #b30000;
+      font-weight: 500;
+    }
+
+    .menu-item i {
+      margin-right: 10px;
+    }
+
+    .main {
+      flex: 1;
+      height: 100vh;
+      padding: 0;
+      background-color: #e3e3e3; /* cinza claro */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      background: linear-gradient(to right, #b30000, #555555); /* vermelho para cinza */
+      color: white;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 20;
+    }
+
+    .topbar button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .topbar h1 {
+      margin-left: 15px;
+      font-size: 20px;
+    }
+
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 60px;
+      padding: 20px 20px 20px 0px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 15px 0px 15px 0px;
+      margin-bottom: 20px;
+      margin-left: 10px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+      max-width: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .card-header {
+      background: linear-gradient(to right, #800000, #800000); /* vermelho escuro */
+      color: white;
+      padding: 20px 10px 20px 5px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: -20px;
+      width: 100%;
+    }
+
+    .card-header.origem {
+      background: url('https://cdn-icons-png.flaticon.com/512/684/684908.png') no-repeat center left, linear-gradient(to right, #800000, #800000);
+      background-size: 30px 30px, cover;
+      background-position-x: 10px;
+    }
+
+    .card-header.destino {
+      background: url('https://cdn-icons-png.flaticon.com/512/854/854894.png') no-repeat center left, linear-gradient(to right, #800000, #800000);
+      background-size: 30px 30px, cover;
+      background-position-x: 10px;
+    }
+
+    .card p {
+      margin: 5px 0;
+      padding-left: 10px;
+    }
+
+    .actions {
+      text-align: center;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .actions button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      background-color: #28a745;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      flex: 1 1 120px;
+      max-width: 200px;
+    }
+
+    .actions button:hover {
+      background-color: #28a745;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="logo.png" alt="Logo Bandeirantes" />
+        <h2>José Marcio Ruiz</h2>
+        <p>C149</p>
+      </div>
+
+      <div class="menu-item"><i class="material-icons">person</i>Convocação</div>
+
+      <a href="fila.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">format_list_numbered</i>Fila
+        </div>
+      </a>
+
+      <a href="reserva.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">bookmark</i>Reserva
+        </div>
+      </a>
+
+      <a href="index.html" style="text-decoration: none;">
+        <div class="menu-item">
+          <i class="material-icons">exit_to_app</i>Sair
+        </div>
+      </a>
+    </div>
+
+    <div class="main">
+      <div class="topbar">
+        <button id="menuButton"><i class="material-icons">menu</i></button>
+        <h1>Convocação</h1>
+      </div>
+
+      <div class="content">
+        <div class="card">
+          <div class="card-header">INFORMAÇÕES DA AGENDA</div>
+          <p><strong>Tipo:</strong> SUA VEZ PELA CHAPEIRA 00002C</p>
+          <p><strong>Fila:</strong> 001 - TRA COOPERADO</p>
+          <p><strong>Nº Agenda:</strong> 031275 (PLANEJADO)</p>
+          <p><strong>Visite Code:</strong> 0429/2021</p>
+          <p><strong>Dt/Hr Efetuar Retirada:</strong> 10 Apr 2023 00:00</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header origem">ORIGEM</div>
+          <p><strong>Fantasia:</strong> ASIA SHIPPING TRANSP</p>
+          <p><strong>Endereço:</strong> R ALEXANDRE HERCULANO, 197 - GONZAGA - SANTOS/SP</p>
+          <p><strong>CEP:</strong> 11050031</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header destino">DESTINO</div>
+          <p><strong>Fantasia:</strong> DEICMAR IPA</p>
+          <p><strong>Endereço:</strong> AVENIDA EDUARDO PEREIRA GUINLE, 00 - OUTEIRINHOS - SANTOS/SP</p>
+          <p><strong>CEP:</strong> 11013250</p>
+        </div>
+
+        <div class="actions">
+          <button onclick="abrirModal()">FINALIZAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Container -->
+  <div id="modalContainer" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.5); z-index: 100; justify-content:center; align-items:center;">
+    <div style="background:#fff; padding:20px; border-radius:10px; width: 90%; max-width: 320px;">
+      <h2>Informe o Nº do Container</h2>
+      <input type="text" id="numeroContainer" placeholder="Digite o nº do container" style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;" />
+      <div style="text-align: right; margin-top: 15px;">
+        <button onclick="enviarNumero()" style="padding: 8px 16px; border:none; border-radius:5px; background:#005aa7; color:#fff; font-weight:bold; cursor:pointer;">Enviar</button>
+        <button onclick="fecharModal()" style="padding: 8px 16px; margin-left: 8px; border:none; border-radius:5px; background:#ccc; cursor:pointer;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuButton = document.getElementById('menuButton');
+      if (!sidebar.contains(event.target) && event.target !== menuButton) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    document.getElementById('menuButton').addEventListener('click', function(event) {
+      event.stopPropagation();
+      toggleMenu();
+    });
+
+    function abrirModal() {
+      document.getElementById('modalContainer').style.display = 'flex';
+    }
+
+    function fecharModal() {
+      document.getElementById('modalContainer').style.display = 'none';
+    }
+
+    function enviarNumero() {
+      const numero = document.getElementById('numeroContainer').value.trim();
+      if (numero === "") {
+        alert("Por favor, informe o nº do container.");
+        return;
+      }
+      alert("Agenda Realizada com Sucesso");
+      window.location.href = "sem_agenda.html";
+    }
+  </script>
+</body>
+</html>
